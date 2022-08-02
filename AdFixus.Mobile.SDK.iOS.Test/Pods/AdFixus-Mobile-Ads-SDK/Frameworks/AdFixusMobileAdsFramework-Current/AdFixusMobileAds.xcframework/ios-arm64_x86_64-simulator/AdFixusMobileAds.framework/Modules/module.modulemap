@@ -1,0 +1,4 @@
+framework module AdFixusMobileAds {
+  header "AdFixusMobileAds-Swift.h"
+  requires objc
+}

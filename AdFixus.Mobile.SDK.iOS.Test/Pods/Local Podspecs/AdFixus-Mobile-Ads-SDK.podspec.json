@@ -1,0 +1,38 @@
+{
+  "name": "AdFixus-Mobile-Ads-SDK",
+  "authors": {
+    "AdFixus Pty Ltd": "sales@adfixus.com"
+  },
+  "cocoapods_version": ">= 1.9.0",
+  "dependencies": {
+    "Google-Mobile-Ads-SDK": [
+      ">=9.1.0"
+    ]
+  },
+  "homepage": "https://www.adfixus.com",
+  "license": {
+    "type": "Proprietary",
+    "file": "LICENSE"
+  },
+  "platforms": {
+    "ios": "10.0"
+  },
+  "pod_target_xcconfig": {
+    "VALID_ARCHS[sdk=iphoneos*]": "arm64 armv7",
+    "VALID_ARCHS[sdk=iphonesimulator*]": "x86_64 arm64"
+  },
+  "description": "The AdFixus Mobile SDK is is the latest generation in mobile advertising featuring responsive ad formats. It is a wrapper around Google Mobile Ads SDK.",
+  "preserve_paths": [
+    "LICENSE",
+    "README.txt"
+  ],
+  "source": {
+    "http": "https://github.com/AdFixus/AdFixus.Mobile.SDK.iOS/raw/main/Release/1.0.0/AdFixusMobileAds-1.0.0.tar.gz"
+  },
+  "static_framework": true,
+  "summary": "AdFixus Mobile Framework. Monetize your mobile applications with AdFixus fully responsive ads.",
+  "vendored_frameworks": [
+    "Frameworks/AdFixusMobileAdsFramework-Current/AdFixusMobileAds.xcframework"
+  ],
+  "version": "1.0.0"
+}
