@@ -12,7 +12,8 @@ import AdFixusMobileAds
 class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private var manager: ResponsiveAdManager!
+    private let manager = ResponsiveAdManager()
+    private var adapter: AdFixusAdViewProvider?
     private var adSlotId: Int = 1
     private var bannerView: GAMBannerView!
     public var managerCorrelatorValue: String?
@@ -109,16 +110,20 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
             
             //logMessage("adSlotTypeId:\(adSlotTypeId),targetType:\(targetType)")
             
+            //adSlotId += 1
+            //_ = loadAdWithParameters(adView: cell, targeting: &targeting)
+            
             adSlotId += 1
-            _ = loadAdWithParameters(adView: cell, targeting: &targeting)
+            loadAdWithAdapter(adView: cell, targeting: &targeting)
         }
 
         return cell
     }
-       
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        manager = ResponsiveAdManager()
+        //manager = ResponsiveAdManager()
+        adapter = AdFixusAdViewProvider(self)
         manager.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
@@ -132,6 +137,10 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
         
         collectionView.collectionViewLayout = layout
         collectionView.dragInteractionEnabled = false
+    }
+    
+    func loadAdWithAdapter(adView: UIView, targeting: inout Dictionary<String, String>){
+        adapter?.loadAd(containerView: adView, targeting: &targeting)
     }
     
     func loadAdWithParameters(adView: UIView, targeting: inout Dictionary<String, String>) -> OperationResponse
@@ -200,7 +209,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
     // clicking on an ad.
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
         print("\n")
-        logMessage("Handle bannerViewWillPresentScreen Event")
+        print("Handle bannerViewWillPresentScreen Event")
     }
      
     // Called just before dismissing a full screen view.

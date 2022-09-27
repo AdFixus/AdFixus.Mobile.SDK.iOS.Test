@@ -15,6 +15,7 @@
 		A91774C9284472E400ECA38B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91774C7284472B900ECA38B /* LaunchScreen.storyboard */; };
 		A91774CA284472E400ECA38B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A91774C8284472BD00ECA38B /* Main.storyboard */; };
 		A9B064E0289A0F71002ED326 /* AdFixusMobileAds.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = A9B064DF289A0F71002ED326 /* AdFixusMobileAds.xcframework */; };
+		A9FB37BE28E310270030E780 /* AdFixusAdViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = A9FB37BD28E310270030E780 /* AdFixusAdViewProvider.swift */; };
 		B479484C40F6F4EB46EAC7E8 /* Pods_AdFixus_Mobile_SDK_iOS_Test.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 09ADA79DE76BD0062196A99B /* Pods_AdFixus_Mobile_SDK_iOS_Test.framework */; };
 /* End PBXBuildFile section */
 
@@ -45,6 +46,7 @@
 		A91774C8284472BD00ECA38B /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		A98D46E7289910E700C012E2 /* AdFixus.Mobile.SDK.iOS.Test.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AdFixus.Mobile.SDK.iOS.Test.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A9B064DF289A0F71002ED326 /* AdFixusMobileAds.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; path = AdFixusMobileAds.xcframework; sourceTree = "<group>"; };
+		A9FB37BD28E310270030E780 /* AdFixusAdViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdFixusAdViewProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,6 +93,7 @@
 				A91774C8284472BD00ECA38B /* Main.storyboard */,
 				A91774BA28446A7600ECA38B /* ResponsiveAdController.swift */,
 				A91774B1284468CD00ECA38B /* SceneDelegate.swift */,
+				A9FB37BD28E310270030E780 /* AdFixusAdViewProvider.swift */,
 			);
 			path = AdFixus.Mobile.SDK.iOS.Test;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A91774AF284468BD00ECA38B /* AppDelegate.swift in Sources */,
+				A9FB37BE28E310270030E780 /* AdFixusAdViewProvider.swift in Sources */,
 				A917749B2844654100ECA38B /* ContentView.swift in Sources */,
 				A91774BB28446A7600ECA38B /* ResponsiveAdController.swift in Sources */,
 				A91774B3284468CD00ECA38B /* SceneDelegate.swift in Sources */,
