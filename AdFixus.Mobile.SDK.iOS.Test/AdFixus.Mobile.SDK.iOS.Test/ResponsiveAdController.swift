@@ -9,8 +9,8 @@ import GoogleMobileAds
 import UIKit
 import AdFixusMobileAds
 
-class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
-       
+class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
+    
     @IBOutlet weak var collectionView: UICollectionView!
     private var manager: ResponsiveAdManager!
     private var adSlotId: Int = 1
@@ -31,7 +31,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListingCell", for: indexPath)
         cell.backgroundColor = UIColor.white
         
-        logMessage("IndexPathRow=\(indexPath.row),AdlotId=\(adSlotId)")
+        //logMessage("IndexPathRow=\(indexPath.row),AdlotId=\(adSlotId)")
         if indexPath.row % 2 == 0 {
             
             if indexPath.row == 0 {
@@ -45,7 +45,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
                 var adSizes = [NSValue]()
                 let adUnitID = "/21842759191/carsales.ios/used/results"
 
-                let size = CGSize(width: 360, height: 750)
+                let size = CGSize(width: 360, height: 500)
                 let richMediaSize = GADAdSizeFromCGSize(size)
                 let mrec = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
                 adSizes.append(NSValueFromGADAdSize(richMediaSize))
@@ -107,7 +107,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
             targeting["kw"] = keyword
             targeting["env"] = "preprod"
             
-            logMessage("adSlotTypeId:\(adSlotTypeId),targetType:\(targetType)")
+            //logMessage("adSlotTypeId:\(adSlotTypeId),targetType:\(targetType)")
             
             adSlotId += 1
             _ = loadAdWithParameters(adView: cell, targeting: &targeting)
@@ -115,10 +115,11 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
 
         return cell
     }
-    
+       
     override func viewDidLoad() {
         super.viewDidLoad()
         manager = ResponsiveAdManager()
+        manager.delegate = self
         collectionView.delegate = self
         collectionView.dataSource = self
 
@@ -151,7 +152,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
         }
         let currentCorrelatorValue = managerCorrelatorValue
         // AUTO MANAGED EVENTS
-        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil, delegate: self)
+        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil)
         
         return operationResponse
     }
@@ -184,30 +185,43 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
 //
 //    }
      
-     
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        logMessage("Handle bannerViewDidReceiveAd Event")
+        print("\n")
+        print("Handle bannerViewDidReceiveAd Event")
     }
     
     // Called when an ad request failed.
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        logMessage("Handle bannerView Event: error \(error)")
+        print("\n")
+        print("Handle bannerView Event: error \(error)")
     }
     
     // Called just before presenting the user a full screen view, such as a browser, in response to
     // clicking on an ad.
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
+        print("\n")
         logMessage("Handle bannerViewWillPresentScreen Event")
     }
      
     // Called just before dismissing a full screen view.
     func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        logMessage("Handle bannerViewWillDismissScreen Event")
+        print("\n")
+        print("Handle bannerViewWillDismissScreen Event")
     }
     
     // Called just after dismissing a full screen view.
     func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        logMessage("Handle bannerViewDidDismissScreen Event")
+        print("Handle bannerViewDidDismissScreen Event")
+    }
+    
+    func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
+        print("\n")
+        print("Handle bannerViewDidRecordImpression Event")
+    }
+    
+    func bannerViewDidRecordClick(_ bannerView: GADBannerView) {
+        print("\n")
+        print("Handle bannerViewDidRecordClick Event")
     }
     
 //    func printLogMessage(_ message: String) {

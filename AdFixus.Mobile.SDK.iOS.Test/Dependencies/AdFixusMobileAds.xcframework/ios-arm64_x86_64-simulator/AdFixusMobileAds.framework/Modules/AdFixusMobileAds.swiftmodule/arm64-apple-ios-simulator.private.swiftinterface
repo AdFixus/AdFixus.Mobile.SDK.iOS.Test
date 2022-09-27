@@ -1,0 +1,51 @@
+// swift-interface-format-version: 1.0
+// swift-compiler-version: Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)
+// swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AdFixusMobileAds
+// swift-module-flags-ignorable: -enable-bare-slash-regex
+import Foundation
+import GoogleMobileAds
+import Swift
+import _Concurrency
+import _StringProcessing
+public protocol BannerViewDelegate : ObjectiveC.NSObject {
+  func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
+  func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
+  func bannerViewDidRecordImpression(_ bannerView: GoogleMobileAds.GADBannerView)
+  func bannerViewDidRecordClick(_ bannerView: GoogleMobileAds.GADBannerView)
+  func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  func bannerViewWillDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  func bannerViewDidDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+}
+@_hasMissingDesignatedInitializers public class OperationResponse {
+  public var request: GoogleMobileAds.GAMRequest?
+  public var initialSize: CoreFoundation.CGSize
+  public var adSizes: [Foundation.NSValue]
+  public var adUnitID: Swift.String
+  public var customTargeting: Swift.Dictionary<Swift.String, Swift.String>?
+  public var publisherProvidedID: Swift.String?
+  public var statusMessage: Swift.String
+  public var succesful: Swift.Bool
+  public var callerFileName: Swift.String
+  public var callerFunctionName: Swift.String
+  public var callerLineNumber: Swift.Int
+  public var callerColumnNumber: Swift.Int
+  @objc deinit
+}
+@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class ResponsiveAdManager : UIKit.UIViewController, GoogleMobileAds.GADBannerViewDelegate {
+  @_Concurrency.MainActor(unsafe) weak public var delegate: AdFixusMobileAds.BannerViewDelegate?
+  @_Concurrency.MainActor(unsafe) public var bundleIDIsValid: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public var managerCorrelatorValue: Swift.String?
+  @_Concurrency.MainActor(unsafe) public func initializeGADMobileAds(handler: GoogleMobileAds.GADInitializationCompletionHandler?)
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreFoundation.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewWillDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidRecordImpression(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidRecordClick(_ bannerView: GoogleMobileAds.GADBannerView)
+  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
+  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  @objc deinit
+}

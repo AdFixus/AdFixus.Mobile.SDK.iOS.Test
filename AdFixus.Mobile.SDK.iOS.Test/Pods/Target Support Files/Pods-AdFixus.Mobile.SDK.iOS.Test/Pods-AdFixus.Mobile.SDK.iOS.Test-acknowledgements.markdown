@@ -11,7 +11,7 @@ Copyright 2021 Google
 
 ## GoogleUserMessagingPlatform
 
-Copyright 2021 Google
+Copyright 2022 Google
 
 ## GoogleUtilities
 
