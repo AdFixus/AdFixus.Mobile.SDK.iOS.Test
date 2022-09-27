@@ -15,6 +15,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
     private var manager: ResponsiveAdManager!
     private var adSlotId: Int = 1
     private var bannerView: GAMBannerView!
+    public var managerCorrelatorValue: String?
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("collectionView: 10")
@@ -30,35 +31,38 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
         cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListingCell", for: indexPath)
         cell.backgroundColor = UIColor.white
         
+        logMessage("IndexPathRow=\(indexPath.row),AdlotId=\(adSlotId)")
         if indexPath.row % 2 == 0 {
             
             if indexPath.row == 0 {
                 cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListingCell", for: indexPath)
                 cell.backgroundColor = UIColor.white
-                
+
                 for subview in cell.subviews {
                     subview.removeFromSuperview()
                 }
-                
+
                 var adSizes = [NSValue]()
                 let adUnitID = "/21842759191/carsales.ios/used/results"
-                
+
                 let size = CGSize(width: 360, height: 750)
                 let richMediaSize = GADAdSizeFromCGSize(size)
                 let mrec = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
                 adSizes.append(NSValueFromGADAdSize(richMediaSize))
                 adSizes.append(NSValueFromGADAdSize(mrec))
-                
+
                 bannerView = GAMBannerView(adSize: GADAdSizeFromCGSize(size))
                 bannerView.validAdSizes = adSizes
                 bannerView.adUnitID = adUnitID
-                
+
+
                 bannerView.rootViewController = self
                 bannerView.delegate = self
-                
+
                 var targeting = Dictionary<String, String>()
                 targeting["cct"] = "mrec"
-                
+                targeting["env"] = "preprod"
+
                 let request = GAMRequest()
                 request.customTargeting = targeting
                 bannerView.load(request)
@@ -81,16 +85,29 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
             
             var targeting = Dictionary<String, String>()
             
-            switch (adSlotId)  {
+            let adSlotTypeId = adSlotId % 4;
+            var targetType = ""
+            var keyword = ""
+            switch (adSlotTypeId)  {
               case 1:
-                targeting["cct"] = "contentcard"
+                targetType = "contentcard"
+                keyword = "mobilefirst-carousel"
               case 2:
-                targeting["cct"] = "gc"
-            case 3:
-                targeting["cct"] = "carsalescard"
+                targetType = "gc"
+                keyword = "mobilefirst-gc"
+              case 3:
+                targetType = "carsalescard"
+                keyword = "mobilefirst-card"
               default:
-                targeting["cct"] = "mrec"
+                targetType = "mrec"
+                keyword = "mobilefirst-mrec"
             }
+            
+            targeting["cct"] = targetType
+            targeting["kw"] = keyword
+            targeting["env"] = "preprod"
+            
+            logMessage("adSlotTypeId:\(adSlotTypeId),targetType:\(targetType)")
             
             adSlotId += 1
             _ = loadAdWithParameters(adView: cell, targeting: &targeting)
@@ -129,62 +146,98 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, UICollect
         // MANAGEMENT OF EVENTS
         //let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, customTargeting: &targeting, publisherProvidedID: nil ,delegate: self)
         
+        if managerCorrelatorValue == nil {
+            managerCorrelatorValue = UUID().uuidString
+        }
+        let currentCorrelatorValue = managerCorrelatorValue
         // AUTO MANAGED EVENTS
-        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, customTargeting: &targeting, publisherProvidedID: nil, delegate: nil)
+        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil, delegate: self)
         
         return operationResponse
     }
     
-    func loadWithRequest(adView: UIView, targeting: inout Dictionary<String, String>) -> OperationResponse
-    {
-        // Iti s recommended to use loadAdWithParameters like methods.
-        var adSizes = [NSValue]()
-        let adUnitID = "/21842759191/carsales.ios/used/results"
-        let size = CGSize(width: 360, height: 500)
-        let richMediaSize = GADAdSizeFromCGSize(size)
-        let mrec = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
-        adSizes.append(NSValueFromGADAdSize(richMediaSize))
-        adSizes.append(NSValueFromGADAdSize(mrec))
-        
-        var customTargeting = Dictionary<String, String>()
-        customTargeting["cct"] = "mrec"
-        
-        let request = GAMRequest()
-        request.customTargeting = customTargeting
-        
-        // MANAGEMENT OF EVENTS
-        //let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, request: request, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, delegate: self)
-        
-        // AUTO MANAGED EVENTS
-        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, customTargeting: &targeting, publisherProvidedID: nil, delegate: nil)
-        
-        return operationResponse
-        
-    }
+//    func loadWithRequest(adView: UIView, targeting: inout Dictionary<String, String>) -> OperationResponse
+//    {
+//        // Iti s recommended to use loadAdWithParameters like methods.
+//        var adSizes = [NSValue]()
+//        let adUnitID = "/21842759191/carsales.ios/used/results"
+//        let size = CGSize(width: 360, height: 500)
+//        let richMediaSize = GADAdSizeFromCGSize(size)
+//        let mrec = GADAdSizeFromCGSize(CGSize(width: 300, height: 250))
+//        adSizes.append(NSValueFromGADAdSize(richMediaSize))
+//        adSizes.append(NSValueFromGADAdSize(mrec))
+//
+//        var customTargeting = Dictionary<String, String>()
+//        customTargeting["cct"] = "mrec"
+//        customTargeting["env"] = "preprod"
+//
+//        let request = GAMRequest()
+//        request.customTargeting = customTargeting
+//
+//        // MANAGEMENT OF EVENTS
+//        //let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, request: request, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, delegate: self)
+//
+//        // AUTO MANAGED EVENTS
+//        let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, customTargeting: &targeting, publisherProvidedID: nil, delegate: self)
+//
+//        return operationResponse
+//
+//    }
      
      
     func bannerViewDidReceiveAd(_ bannerView: GADBannerView) {
-        print("Handle bannerViewDidReceiveAd Event")
+        logMessage("Handle bannerViewDidReceiveAd Event")
     }
     
     // Called when an ad request failed.
     func bannerView(_ bannerView: GADBannerView, didFailToReceiveAdWithError error: Error) {
-        print("Handle bannerView Event: error \(error)")
+        logMessage("Handle bannerView Event: error \(error)")
     }
     
     // Called just before presenting the user a full screen view, such as a browser, in response to
     // clicking on an ad.
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {
-        print("Handle bannerViewWillPresentScreen Event")
+        logMessage("Handle bannerViewWillPresentScreen Event")
     }
      
     // Called just before dismissing a full screen view.
     func bannerViewWillDismissScreen(_ bannerView: GADBannerView) {
-        print("Handle bannerViewWillDismissScreen Event")
+        logMessage("Handle bannerViewWillDismissScreen Event")
     }
     
     // Called just after dismissing a full screen view.
     func bannerViewDidDismissScreen(_ bannerView: GADBannerView) {
-        print("Handle bannerViewDidDismissScreen Event")
+        logMessage("Handle bannerViewDidDismissScreen Event")
+    }
+    
+//    func printLogMessage(_ message: String) {
+//        let isoDateFormatter = ISO8601DateFormatter()
+//        isoDateFormatter.formatOptions = [.withInternetDateTime,
+//                                          .withDashSeparatorInDate,
+//                                          .withFullDate,
+//                                          .withFractionalSeconds,
+//                                          .withColonSeparatorInTimeZone]
+//        isoDateFormatter.timeZone = TimeZone.current
+//        let timestamp = isoDateFormatter.string(from: Date())
+//        let lineSeperator = "\n=========================================================================================="
+//        let messageWithTimestamp = "\(lineSeperator)\n\(timestamp): \(message)\(lineSeperator)"
+//        DispatchQueue.main.async {print(messageWithTimestamp)}
+//    }
+    
+    func logMessage(_ message: String,
+                      fileName: String = #fileID,
+                      functionName: String = #function,
+                      lineNumber: Int = #line,
+                      columnNumber: Int = #column,
+                      dsohandle: UnsafeRawPointer = #dsohandle) {
+        let isoDateFormatter = ISO8601DateFormatter()
+        isoDateFormatter.formatOptions = [.withInternetDateTime,
+                                          .withDashSeparatorInDate,
+                                          .withFullDate,
+                                          .withFractionalSeconds,
+                                          .withColonSeparatorInTimeZone]
+        isoDateFormatter.timeZone = TimeZone.current
+        let timestamp = isoDateFormatter.string(from: Date())
+        print("\(timestamp) AFX-SDK-CS:\(fileName)-\(functionName) LN:\(lineNumber)[\(columnNumber)] <\(dsohandle)> <\(managerCorrelatorValue ?? "NA")> - \(message)")
     }
 }

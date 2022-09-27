@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.5.2 (swiftlang-1300.0.47.5 clang-1300.0.29.30)
+// swift-compiler-version: Apple Swift version 5.6 (swiftlang-5.6.0.323.62 clang-1316.0.20.8)
 // swift-module-flags: -target arm64-apple-ios12.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AdFixusMobileAds
 import Foundation
 import GoogleMobileAds
@@ -22,9 +22,10 @@ import _Concurrency
 }
 @objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class ResponsiveAdManager : UIKit.UIViewController, GoogleMobileAds.GADBannerViewDelegate {
   @_Concurrency.MainActor(unsafe) public var bundleIDIsValid: Swift.Bool
+  @_Concurrency.MainActor(unsafe) public var managerCorrelatorValue: Swift.String?
   @_Concurrency.MainActor(unsafe) public func initializeGADMobileAds(handler: GoogleMobileAds.GADInitializationCompletionHandler?)
-  @_Concurrency.MainActor(unsafe) public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, request: GoogleMobileAds.GAMRequest, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, delegate: GoogleMobileAds.GADBannerViewDelegate?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
-  @_Concurrency.MainActor(unsafe) public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, delegate: GoogleMobileAds.GADBannerViewDelegate?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
+  @discardableResult
+  @_Concurrency.MainActor(unsafe) public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, delegate: GoogleMobileAds.GADBannerViewDelegate?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
   @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
   @_Concurrency.MainActor(unsafe) @objc public func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
   @_Concurrency.MainActor(unsafe) @objc public func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
