@@ -29,21 +29,21 @@ public protocol BannerViewDelegate : ObjectiveC.NSObject {
   public var callerColumnNumber: Swift.Int
   @objc deinit
 }
-@objc @_inheritsConvenienceInitializers @_Concurrency.MainActor(unsafe) public class ResponsiveAdManager : UIKit.UIViewController, GoogleMobileAds.GADBannerViewDelegate {
-  @_Concurrency.MainActor(unsafe) weak public var delegate: AdFixusMobileAds.BannerViewDelegate?
-  @_Concurrency.MainActor(unsafe) public var bundleIDIsValid: Swift.Bool
-  @_Concurrency.MainActor(unsafe) public var managerCorrelatorValue: Swift.String?
-  @_Concurrency.MainActor(unsafe) public func initializeGADMobileAds(handler: GoogleMobileAds.GADInitializationCompletionHandler?)
+@objc @_inheritsConvenienceInitializers public class ResponsiveAdManager : ObjectiveC.NSObject, GoogleMobileAds.GADBannerViewDelegate {
+  weak public var delegate: AdFixusMobileAds.BannerViewDelegate?
+  public var bundleIDIsValid: Swift.Bool
+  public var managerCorrelatorValue: Swift.String?
+  public init(loggingEnabled: Swift.Bool)
+  @objc override dynamic public init()
+  public func initializeGADMobileAds(handler: GoogleMobileAds.GADInitializationCompletionHandler?)
   @discardableResult
-  @_Concurrency.MainActor(unsafe) public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewWillDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidRecordImpression(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc public func bannerViewDidRecordClick(_ bannerView: GoogleMobileAds.GADBannerView)
-  @_Concurrency.MainActor(unsafe) @objc override dynamic public init(nibName nibNameOrNil: Swift.String?, bundle nibBundleOrNil: Foundation.Bundle?)
-  @_Concurrency.MainActor(unsafe) @objc required dynamic public init?(coder: Foundation.NSCoder)
+  public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
+  @objc public func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
+  @objc public func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
+  @objc public func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @objc public func bannerViewWillDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @objc public func bannerViewDidDismissScreen(_ bannerView: GoogleMobileAds.GADBannerView)
+  @objc public func bannerViewDidRecordImpression(_ bannerView: GoogleMobileAds.GADBannerView)
+  @objc public func bannerViewDidRecordClick(_ bannerView: GoogleMobileAds.GADBannerView)
   @objc deinit
 }

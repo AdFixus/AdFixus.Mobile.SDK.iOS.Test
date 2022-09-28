@@ -10,7 +10,7 @@ import GoogleMobileAds
 import UIKit
 
 class AdFixusAdViewProvider: NSObject {
-    private let manager = ResponsiveAdManager()
+    private let manager = ResponsiveAdManager(loggingEnabled: true)
     private var rootViewController: UIViewController
     private var adContainerView: UIView?
 
@@ -52,12 +52,12 @@ class AdFixusAdViewProvider: NSObject {
 extension AdFixusAdViewProvider: GADBannerViewDelegate, BannerViewDelegate {
     func bannerViewDidRecordImpression(_ bannerView: GADBannerView) {
         print("\n")
-        print("Handle bannerViewWillPresentScreen Event")
+        print("Handle bannerViewDidRecordImpression Event")
     }
 
     func bannerViewDidRecordClick(_ bannerView: GADBannerView) {
         print("\n")
-        print("Handle bannerViewWillPresentScreen Event")
+        print("Handle bannerViewDidRecordClick Event")
     }
 
     func bannerViewWillPresentScreen(_ bannerView: GADBannerView) {

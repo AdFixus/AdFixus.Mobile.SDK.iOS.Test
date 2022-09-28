@@ -12,7 +12,7 @@ import AdFixusMobileAds
 class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerViewDelegate, UICollectionViewDataSource, UICollectionViewDelegate, UICollectionViewDelegateFlowLayout  {
     
     @IBOutlet weak var collectionView: UICollectionView!
-    private let manager = ResponsiveAdManager()
+    private let manager = ResponsiveAdManager(loggingEnabled: true)
     private var adapter: AdFixusAdViewProvider?
     private var adSlotId: Int = 1
     private var bannerView: GAMBannerView!
@@ -36,9 +36,6 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
         if indexPath.row % 2 == 0 {
             
             if indexPath.row == 0 {
-                cell = collectionView.dequeueReusableCell(withReuseIdentifier: "ListingCell", for: indexPath)
-                cell.backgroundColor = UIColor.white
-
                 for subview in cell.subviews {
                     subview.removeFromSuperview()
                 }
@@ -56,19 +53,19 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
                 bannerView.validAdSizes = adSizes
                 bannerView.adUnitID = adUnitID
 
-
                 bannerView.rootViewController = self
                 bannerView.delegate = self
 
                 var targeting = Dictionary<String, String>()
                 targeting["cct"] = "mrec"
                 targeting["env"] = "preprod"
+                targeting["kw"] = "mobilefirst-mrec"
 
                 let request = GAMRequest()
                 request.customTargeting = targeting
+                cell.addSubview(bannerView)
                 bannerView.load(request)
                 bannerView.translatesAutoresizingMaskIntoConstraints = false
-                cell.addSubview(bannerView)
                 bannerView.centerXAnchor.constraint(equalTo: cell.centerXAnchor).isActive = true
                 bannerView.centerYAnchor.constraint(equalTo: cell.centerYAnchor).isActive = true
             }
@@ -77,15 +74,12 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
                 cell.backgroundColor = UIColor.white
             }
         } else {
-            cell = collectionView.dequeueReusableCell(withReuseIdentifier: "AdCell", for: indexPath)
-            cell.backgroundColor = UIColor.white
-
             for subview in cell.subviews {
                 subview.removeFromSuperview()
             }
-            
+
             var targeting = Dictionary<String, String>()
-            
+
             let adSlotTypeId = adSlotId % 4;
             var targetType = ""
             var keyword = ""
@@ -103,16 +97,16 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
                 targetType = "mrec"
                 keyword = "mobilefirst-mrec"
             }
-            
+
             targeting["cct"] = targetType
             targeting["kw"] = keyword
             targeting["env"] = "preprod"
-            
+
             //logMessage("adSlotTypeId:\(adSlotTypeId),targetType:\(targetType)")
-            
+
             //adSlotId += 1
             //_ = loadAdWithParameters(adView: cell, targeting: &targeting)
-            
+
             adSlotId += 1
             loadAdWithAdapter(adView: cell, targeting: &targeting)
         }
@@ -159,6 +153,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
         if managerCorrelatorValue == nil {
             managerCorrelatorValue = UUID().uuidString
         }
+        
         let currentCorrelatorValue = managerCorrelatorValue
         // AUTO MANAGED EVENTS
         let operationResponse = manager.loadResponsiveAd(self, adContainerUIView: adView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil)

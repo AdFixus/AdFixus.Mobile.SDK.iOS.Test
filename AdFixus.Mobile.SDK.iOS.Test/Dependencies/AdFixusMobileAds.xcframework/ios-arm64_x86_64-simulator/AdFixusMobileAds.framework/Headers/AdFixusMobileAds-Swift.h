@@ -198,7 +198,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import GoogleMobileAds;
-@import UIKit;
+@import ObjectiveC;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -217,12 +217,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 @class GADBannerView;
-@class NSString;
-@class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC16AdFixusMobileAds19ResponsiveAdManager")
-@interface ResponsiveAdManager : UIViewController <GADBannerViewDelegate>
+@interface ResponsiveAdManager : NSObject <GADBannerViewDelegate>
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)bannerViewDidReceiveAd:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerView:(GADBannerView * _Nonnull)bannerView didFailToReceiveAdWithError:(NSError * _Nonnull)error;
 - (void)bannerViewWillPresentScreen:(GADBannerView * _Nonnull)bannerView;
@@ -230,8 +228,6 @@ SWIFT_CLASS("_TtC16AdFixusMobileAds19ResponsiveAdManager")
 - (void)bannerViewDidDismissScreen:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerViewDidRecordImpression:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerViewDidRecordClick:(GADBannerView * _Nonnull)bannerView;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 #if __has_attribute(external_source_symbol)
@@ -439,7 +435,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
 @import GoogleMobileAds;
-@import UIKit;
+@import ObjectiveC;
 #endif
 
 #pragma clang diagnostic ignored "-Wproperty-attribute-mismatch"
@@ -458,12 +454,10 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #endif
 
 @class GADBannerView;
-@class NSString;
-@class NSBundle;
-@class NSCoder;
 
 SWIFT_CLASS("_TtC16AdFixusMobileAds19ResponsiveAdManager")
-@interface ResponsiveAdManager : UIViewController <GADBannerViewDelegate>
+@interface ResponsiveAdManager : NSObject <GADBannerViewDelegate>
+- (nonnull instancetype)init OBJC_DESIGNATED_INITIALIZER;
 - (void)bannerViewDidReceiveAd:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerView:(GADBannerView * _Nonnull)bannerView didFailToReceiveAdWithError:(NSError * _Nonnull)error;
 - (void)bannerViewWillPresentScreen:(GADBannerView * _Nonnull)bannerView;
@@ -471,8 +465,6 @@ SWIFT_CLASS("_TtC16AdFixusMobileAds19ResponsiveAdManager")
 - (void)bannerViewDidDismissScreen:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerViewDidRecordImpression:(GADBannerView * _Nonnull)bannerView;
 - (void)bannerViewDidRecordClick:(GADBannerView * _Nonnull)bannerView;
-- (nonnull instancetype)initWithNibName:(NSString * _Nullable)nibNameOrNil bundle:(NSBundle * _Nullable)nibBundleOrNil OBJC_DESIGNATED_INITIALIZER;
-- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
 @end
 
 #if __has_attribute(external_source_symbol)
