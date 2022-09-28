@@ -22,11 +22,11 @@
 		</data>
 		<key>Modules/AdFixusMobileAds.swiftmodule/arm64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		BaA8aA0tpJAmiicn/zATjf4URJM=
+		zv1LmYu/0GhKyFapYc9LT1Loke4=
 		</data>
 		<key>Modules/AdFixusMobileAds.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		jQ6qU4UGFUKsZN/Hlnmazz0uc6w=
+		Jf1FbFO4UeI6m6j4nlB08cDJ4eg=
 		</data>
 		<key>Modules/AdFixusMobileAds.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
 		<data>
@@ -34,11 +34,11 @@
 		</data>
 		<key>Modules/AdFixusMobileAds.swiftmodule/x86_64-apple-ios-simulator.swiftinterface</key>
 		<data>
-		naFEfKX6NVNU5Fovlqf11TwKbMk=
+		1KKexRUiSJYtY+DmNdzWzyAd4EA=
 		</data>
 		<key>Modules/AdFixusMobileAds.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<data>
-		i/KF8WQ3re3d33+oHnAB0zyx+OU=
+		LBaEzo5hjqQV5VC0FWxpyCRxWvk=
 		</data>
 		<key>Modules/module.modulemap</key>
 		<data>
@@ -72,14 +72,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			bnXx1dTlv64P2TKmUOE8P+eWJTRLUX7x8n7cQs+hx+8=
+			om3R8A6+5c2joEh60sbeOT6TYjgMSc4g7GYvoaO0SLA=
 			</data>
 		</dict>
 		<key>Modules/AdFixusMobileAds.swiftmodule/arm64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			3HLEj8DC4lVQ7rSY+UrYuYPeyMzZ2ZoUE7KUmIfF0+4=
+			mtYHcgv8Cl8duBDKyVscFYXa5tvmr+ta++V052XkVME=
 			</data>
 		</dict>
 		<key>Modules/AdFixusMobileAds.swiftmodule/x86_64-apple-ios-simulator.swiftdoc</key>
@@ -93,14 +93,14 @@
 		<dict>
 			<key>hash2</key>
 			<data>
-			ehjDZOIV/EDUDEWR08odEANWKvee/aZqoMv5LtILs4M=
+			HgzFjeS7PCizyAXmK1LVF7S0/nPLm/ipGdwWOYJkuY8=
 			</data>
 		</dict>
 		<key>Modules/AdFixusMobileAds.swiftmodule/x86_64-apple-ios-simulator.swiftmodule</key>
 		<dict>
 			<key>hash2</key>
 			<data>
-			ZlA3NNuH0sCkF82Mdg8hqNljRfJzlmQ3rvfTqQ3orEg=
+			LMLn7XvWvUKimKuUD2hpS0gUiTcnbN/P9QiW8Sem0cE=
 			</data>
 		</dict>
 		<key>Modules/module.modulemap</key>

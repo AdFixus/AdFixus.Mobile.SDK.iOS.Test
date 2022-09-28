@@ -137,7 +137,7 @@ class ResponsiveAdController: UIViewController, GADBannerViewDelegate, BannerVie
         adapter?.loadAd(containerView: adView, targeting: &targeting)
     }
     
-    func loadAdWithParameters(adView: UIView, targeting: inout Dictionary<String, String>) -> OperationResponse
+    func loadAdWithParameters(adView: UIView, targeting: inout Dictionary<String, String>) -> GAMBannerView?
     {
         var adSizes = [NSValue]()
         let adUnitID = "/21842759191/carsales.ios/used/results"

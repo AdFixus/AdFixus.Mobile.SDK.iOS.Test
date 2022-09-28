@@ -37,7 +37,7 @@ public protocol BannerViewDelegate : ObjectiveC.NSObject {
   @objc override dynamic public init()
   public func initializeGADMobileAds(handler: GoogleMobileAds.GADInitializationCompletionHandler?)
   @discardableResult
-  public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> AdFixusMobileAds.OperationResponse
+  public func loadResponsiveAd(_ rootViewController: UIKit.UIViewController, adContainerUIView: UIKit.UIView, initialSize: CoreGraphics.CGSize, adSizes: [Foundation.NSValue], adUnitID: Swift.String, correlatorValue: Swift.String?, customTargeting: inout Swift.Dictionary<Swift.String, Swift.String>, publisherProvidedID: Swift.String?, callerFileName: Swift.String = #file, callerFunctionName: Swift.String = #function, callerLineNumber: Swift.Int = #line, callerColumnNumber: Swift.Int = #column) -> GoogleMobileAds.GAMBannerView?
   @objc public func bannerViewDidReceiveAd(_ bannerView: GoogleMobileAds.GADBannerView)
   @objc public func bannerView(_ bannerView: GoogleMobileAds.GADBannerView, didFailToReceiveAdWithError error: Swift.Error)
   @objc public func bannerViewWillPresentScreen(_ bannerView: GoogleMobileAds.GADBannerView)
