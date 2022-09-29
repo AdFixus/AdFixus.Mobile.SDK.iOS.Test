@@ -42,10 +42,17 @@ class AdFixusAdViewProvider: NSObject {
             managerCorrelatorValue = UUID().uuidString
         }
         let currentCorrelatorValue = managerCorrelatorValue
-        
+
         isFetchingAd = true
         // AUTO MANAGED EVENTS
-        _ = manager.loadResponsiveAd(rootViewController, adContainerUIView: containerView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil)
+        var bv = manager.loadResponsiveAd(rootViewController, adContainerUIView: containerView, initialSize: size, adSizes: adSizes, adUnitID: adUnitID, correlatorValue: currentCorrelatorValue, customTargeting: &targeting, publisherProvidedID: nil)
+        
+        if bv != nil {
+            manager.resizeBannerView(containerView, bannerView: bv!)
+        }
+        
+        
+        let gamBv = bv as! GAMBannerView
     }
 }
 

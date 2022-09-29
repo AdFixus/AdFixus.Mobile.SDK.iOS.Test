@@ -197,6 +197,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreGraphics;
 @import GoogleMobileAds;
 @import ObjectiveC;
 #endif
@@ -215,6 +216,16 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="AdFixusMobileAds",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
+
+@class NSCoder;
+
+SWIFT_CLASS("_TtC16AdFixusMobileAds10BannerView")
+@interface BannerView : GAMBannerView
+- (nonnull instancetype)initWithAdSize:(GADAdSize)adSize origin:(CGPoint)origin OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithAdSize:(GADAdSize)adSize OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
 
 @class GADBannerView;
 
@@ -434,6 +445,7 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 #if __has_warning("-Watimport-in-framework-header")
 #pragma clang diagnostic ignored "-Watimport-in-framework-header"
 #endif
+@import CoreGraphics;
 @import GoogleMobileAds;
 @import ObjectiveC;
 #endif
@@ -452,6 +464,16 @@ typedef unsigned int swift_uint4  __attribute__((__ext_vector_type__(4)));
 # pragma clang attribute push(__attribute__((external_source_symbol(language="Swift", defined_in="AdFixusMobileAds",generated_declaration))), apply_to=any(function,enum,objc_interface,objc_category,objc_protocol))
 # pragma pop_macro("any")
 #endif
+
+@class NSCoder;
+
+SWIFT_CLASS("_TtC16AdFixusMobileAds10BannerView")
+@interface BannerView : GAMBannerView
+- (nonnull instancetype)initWithAdSize:(GADAdSize)adSize origin:(CGPoint)origin OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithAdSize:(GADAdSize)adSize OBJC_DESIGNATED_INITIALIZER;
+- (nonnull instancetype)initWithFrame:(CGRect)frame OBJC_DESIGNATED_INITIALIZER;
+- (nullable instancetype)initWithCoder:(NSCoder * _Nonnull)coder OBJC_DESIGNATED_INITIALIZER;
+@end
 
 @class GADBannerView;
 
